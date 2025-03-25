@@ -8,14 +8,17 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.models.User;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase db;
     DatabaseReference users;
 
-    RelativeLayout root;
+    LinearLayout root;
 
 
     @SuppressLint("WrongViewCast")
@@ -46,68 +49,33 @@ public class MainActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showRegisterWindow();
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
 
-            
+
+        });
+       btnSign.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+               startActivity(intent);
+           }
+
+
         });
     }
 
-    private void showRegisterWindow() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Register");
-        dialog.setMessage("Please fill out the following form:");
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View registerWindow = inflater.inflate(R.layout.register_window, null);
-        dialog.setView(registerWindow);
-        final MaterialEditText email = registerWindow.findViewById(R.id.emailField);
-        final MaterialEditText password = registerWindow.findViewById(R.id.passwordField);
-        final MaterialEditText name = registerWindow.findViewById(R.id.nameField);
-       dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-           @Override
-           public void onClick(DialogInterface dialogInterface, int i) {
-               dialogInterface.dismiss();
-           }
-       });
+    private void showSignInWindow() {
 
-       dialog.setPositiveButton("Register", new DialogInterface.OnClickListener() {
-           @Override
-           public void onClick(DialogInterface dialogInterface, int i) {
-               if (TextUtils.isEmpty(email.getText().toString())) {
-                   Snackbar.make(root, "Please enter email", Snackbar.LENGTH_SHORT).show();
-                   return;
-               }
-               if (TextUtils.isEmpty(name.getText().toString())) {
-                   Snackbar.make(root, "Please enter name", Snackbar.LENGTH_SHORT).show();
-                   return;
-               }
-               if (password.getText().toString().length() < 5) {
-                   Snackbar.make(root, "Please enter password with more than 5 characters", Snackbar.LENGTH_SHORT).show();
-                   return;
-               }
-               auth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                       .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                           @Override
-                           public void onSuccess(AuthResult authResult) {
-                               User user = new User();
-                               user.setName(name.getText().toString());
-                               user.setEmail(email.getText().toString());
-                               user.setPassword(password.getText().toString());
-
-                               users.child(user.getEmail()).setValue(user)
-                                       .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                           @Override
-                                           public void onSuccess(Void avoid) {
-                                               Snackbar.make(root, "Registration successful", Snackbar.LENGTH_SHORT).show();
-                                           }
-
-
-                                       });
-                           }
-                       });
-           }
-       });
-
-       dialog.show();
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(intent);
     }
+
+    public void showRegisterWindow() {
+        Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }

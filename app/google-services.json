@@ -1,29 +1,11 @@
 {
   "project_info": {
     "project_number": "786395996051",
+    "firebase_url": "https://smart-coach-68647-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "smart-coach-68647",
     "storage_bucket": "smart-coach-68647.firebasestorage.app"
   },
   "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:786395996051:android:bf43337caca106221f1266",
-        "android_client_info": {
-          "package_name": "com.example.smart_coach"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCqRSF086-Q96IDXJ3ILp4TArpFMP45wWQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:786395996051:android:03eafa7d372220d51f1266",

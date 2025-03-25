@@ -41,7 +41,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -51,6 +50,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -60,11 +61,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
-    implementation("com.google.firebase:firebase-auth:23.2.0")
+    implementation("com.google.firebase:firebase-auth:21.0.0")
     implementation("com.google.firebase:firebase-database:21.0.0")
-    implementation("com.android.support:cardview-v7:28.0.0")
-    implementation("com.rengwuxian.materialedittext:library:2.1.4")
+    implementation("androidx.cardview:cardview:1.0.0")
+
     implementation("com.google.android.material:material:1.9.0")
+
+
+    implementation("com.rengwuxian.materialedittext:library:2.1.4") {
+        exclude(group = "com.android.support", module = "support-v4")
+        exclude(group = "com.android.support", module = "appcompat-v7")
+    }
 
 
 }
