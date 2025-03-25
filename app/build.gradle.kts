@@ -64,7 +64,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database:21.0.0")
     implementation("com.android.support:cardview-v7:28.0.0")
     implementation("com.rengwuxian.materialedittext:library:2.1.4")
-
+    implementation("com.google.android.material:material:1.9.0")
 
 
 }
