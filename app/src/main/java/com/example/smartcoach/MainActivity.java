@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase db;
     DatabaseReference users;
 
-    LinearLayout root;
+    FrameLayout root;
 
 
     @SuppressLint("WrongViewCast")

@@ -1,34 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root_element"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Фонова картинка -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/sportsman_background" />
+
+    <!-- Затемнення -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#60000000" />
+
+    <!-- Контент по центру -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="487dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:padding="32dp">
 
-        <Button
-            android:id="@+id/btnSignIn"
+        <!-- Логотип -->
+
+        <!-- Текст посередині -->
+        <TextView
+            android:id="@+id/centerText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/teal_700"
-            android:padding="10dp"
-            android:text="Авторизация"
-            android:textColor="@android:color/white" />
+            android:text="Ласкаво просимо до SmartCoach!"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:shadowColor="#40000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            android:layout_marginBottom="16dp" />
 
-        <Button
-            android:id="@+id/btnRegister"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/purple_500"
-            android:padding="10dp"
-            android:text="Регистрация"
-            android:textColor="@android:color/white" />
+            android:text="Ваш персональний тренер для досягнення цілей!"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginBottom="40dp" />
+
+        <!-- Кнопки в горизонтальному ряду -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_teal"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="12dp"
+                android:text="Авторизація"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:elevation="4dp"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_purple"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="12dp"
+                android:text="Реєстрація"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:elevation="4dp" />
+        </LinearLayout>
+
+
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>
