@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="teal_900">#004D40</color>
+    <color name="purple_start">#AB47BC</color>
+    <color name="purple_end">#7E57C2</color>
+    <color name="purple_transparent">#80AB47BC</color> <!-- Полупрозрачный фиолетовый -->
+    <color name="purple_solid">#AB47BC</color> <!-- Яркий фиолетовый -->
 </resources>

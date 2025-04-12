@@ -1,8 +1,11 @@
 package com.example.smartcoach;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.models.User;
@@ -17,6 +20,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private DatabaseReference users;
+    private TextInputEditText emailInput, passwordInput, nameInput;
+    private View registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,61 +30,74 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Инициализация FirebaseAuth и ссылки на базу данных
         auth = FirebaseAuth.getInstance();
-        users = FirebaseDatabase.getInstance().getReference("users");
+        users = FirebaseDatabase.getInstance().getReference("Users");
 
-        final TextInputEditText emailInput = findViewById(R.id.emailInput);
-        final TextInputEditText passwordInput = findViewById(R.id.passwordInput);
-        final TextInputEditText nameInput = findViewById(R.id.nameInput);
+        // Инициализация полей ввода
+        emailInput = findViewById(R.id.emailInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        nameInput = findViewById(R.id.nameInput);
+        registerButton = findViewById(R.id.registerButton);
 
-        findViewById(R.id.registerButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Получение и обрезка введённых значений
-                String email = emailInput.getText().toString().trim();
-                String password = passwordInput.getText().toString().trim();
-                String name = nameInput.getText().toString().trim();
+        // Анимация для кнопки
+        Animation scaleAnimation = AnimationUtils.loadAnimation(this, R.anim.button_scale);
+        registerButton.startAnimation(scaleAnimation);
 
-                // Проверка корректности введённых данных
-                if (TextUtils.isEmpty(email)) {
-                    Snackbar.make(v, "Пожалуйста, введите email", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(name)) {
-                    Snackbar.make(v, "Пожалуйста, введите имя", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if (password.length() < 5) {
-                    Snackbar.make(v, "Пароль должен содержать более 5 символов", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
+        // Обработчик нажатия на кнопку регистрации
+        registerButton.setOnClickListener(v -> {
+            String email = emailInput.getText().toString().trim();
+            String password = passwordInput.getText().toString().trim();
+            String name = nameInput.getText().toString().trim();
 
-                // Создание пользователя с email и паролем
-                auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                FirebaseUser firebaseUser = auth.getCurrentUser();
-                                if (firebaseUser != null) {
-                                    // Создание объекта пользователя и установка данных
-                                    User user = new User();
-                                    user.setName(name);
-                                    user.setEmail(email);
-
-                                    // Запись объекта в базу данных по уникальному идентификатору пользователя
-                                    users.child(firebaseUser.getUid()).setValue(user)
-                                            .addOnSuccessListener(aVoid ->
-                                                    Snackbar.make(v, "Регистрация прошла успешно", Snackbar.LENGTH_SHORT).show()
-                                            )
-                                            .addOnFailureListener(e ->
-                                                    Snackbar.make(v, "Ошибка базы данных: " + e.getMessage(), Snackbar.LENGTH_LONG).show()
-                                            );
-                                } else {
-                                    Snackbar.make(v, "Пользователь не найден, попробуйте еще раз", Snackbar.LENGTH_LONG).show();
-                                }
-                            } else {
-                                Snackbar.make(v, "Ошибка регистрации: " + task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-                            }
-                        });
+            // Проверка корректности введённых данных
+            if (TextUtils.isEmpty(email)) {
+                Snackbar.make(v, "Будь ласка, введіть email", Snackbar.LENGTH_SHORT).show();
+                return;
             }
+            if (TextUtils.isEmpty(name)) {
+                Snackbar.make(v, "Будь ласка, введіть ім'я", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+            if (password.length() < 5) {
+                Snackbar.make(v, "Пароль повинен містити більше 5 символів", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Создание пользователя с email и паролем
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = auth.getCurrentUser();
+                            if (firebaseUser != null) {
+                                User user = new User();
+                                user.setName(name);
+                                user.setEmail(email);
+
+                                users.child(firebaseUser.getUid()).setValue(user)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Snackbar.make(v, "Реєстрація пройшла успішно", Snackbar.LENGTH_SHORT).show();
+                                            // Переход на главный экран после успешной регистрации
+                                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                            finish();
+                                        })
+                                        .addOnFailureListener(e ->
+                                                Snackbar.make(v, "Помилка бази даних: " + e.getMessage(), Snackbar.LENGTH_LONG).show()
+                                        );
+                            } else {
+                                Snackbar.make(v, "Користувач не знайдений, спробуйте ще раз", Snackbar.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Snackbar.make(v, "Помилка реєстрації: " + task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+        });
+
+        // Обработчик нажатия на "Вже є акаунт? Увійти"
+        findViewById(R.id.loginLink).setOnClickListener(v -> {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         });
     }
 }
