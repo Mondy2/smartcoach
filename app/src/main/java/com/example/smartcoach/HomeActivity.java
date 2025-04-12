@@ -1,6 +1,8 @@
 package com.example.smartcoach;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,11 @@ public class HomeActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        findViewById(R.id.openGenerateWorkout).setOnClickListener(v -> {
+            Log.d("HomeActivity", "Generate Workout button clicked");
+            startActivity(new Intent(HomeActivity.this, GenerateWorkoutActivity.class));
         });
     }
 }
