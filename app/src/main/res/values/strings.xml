@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">SmartCoach</string>
+    <string-array name="fitness_goals">
+        <item>Weight Loss</item>
+        <item>Muscle Gain</item>
+        <item>Maintenance</item>
+    </string-array>
+    <string-array name="training_modes">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Advanced</item>
+    </string-array>
 </resources>
