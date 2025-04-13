@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
@@ -93,14 +94,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="32dp"
                 app:hintTextColor="@android:color/white"
-                app:boxStrokeColor="@android:color/white"
-                app:boxBackgroundColor="#20FFFFFF"
-                app:boxCornerRadiusTopStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxStrokeColor="@color/text_input_stroke_color"
+                app:boxStrokeWidth="2dp"
+                app:boxBackgroundMode="none"
+                app:endIconMode="password_toggle"
                 android:hint="Пароль">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:textColor="@android:color/white"
-                    android:textColorHint="#B0FFFFFF"
+                    android:textColorHint="@color/white"
                     android:textSize="18sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
