@@ -1,6 +1,5 @@
 package com.example.smartcoach;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Настройка нижней навигации
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home); // Устанавливаем Home как выбранный по умолчанию
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
@@ -42,15 +42,16 @@ public class HomeActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_generate_workout) {
                 Log.d("HomeActivity", "Generate Workout selected");
                 startActivity(new Intent(HomeActivity.this, GenerateWorkoutActivity.class));
+                finish();
                 return true;
             } else if (itemId == R.id.nav_settings) {
                 Log.d("HomeActivity", "Settings selected");
-                // Добавьте навигацию на SettingsActivity, если она существует
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+                finish();
                 return true;
             }
             return false;
         });
-        bottomNavigationView.setSelectedItemId(R.id.nav_home); // Устанавливаем Home как выбранный по умолчанию
     }
 }
 /*package com.example.smartcoach;
