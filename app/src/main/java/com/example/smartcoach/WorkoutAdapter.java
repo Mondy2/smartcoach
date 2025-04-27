@@ -116,7 +116,9 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.WorkoutV
             return "Full Body";
         }
     }
-}/*package com.example.smartcoach;
+}
+
+/*package com.example.smartcoach;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:orientation="vertical"
-    android:background="@drawable/rounded_container_blue"
-    android:padding="16dp"
-    android:layout_weight="1">
+    android:layout_margin="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@android:color/white">
 
-    <!-- Goal Image -->
-    <ImageView
-        android:id="@+id/goal_image"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_default_workout"
-        android:contentDescription="Goal image" />
-
-    <!-- Goal Title -->
-    <TextView
-        android:id="@+id/goal_title"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Сжигание жира"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/light_blue"
-        android:layout_marginTop="8dp" />
+        android:orientation="vertical">
 
-</LinearLayout>
+        <!-- Goal Image -->
+        <ImageView
+            android:id="@+id/goal_image"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="Goal image"
+            android:background="@drawable/rounded_top_corners" />
+
+        <!-- Goal Title -->
+        <TextView
+            android:id="@+id/goal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goal Title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -40,6 +40,9 @@
         <activity
             android:name=".WorkoutDetailActivity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".GoalRecommendationsActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

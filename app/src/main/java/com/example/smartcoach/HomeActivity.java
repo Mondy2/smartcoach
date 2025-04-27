@@ -230,7 +230,7 @@ public class HomeActivity extends AppCompatActivity {
         GridLayout gridLayout = findViewById(R.id.popular_goals_grid);
         gridLayout.removeAllViews();
 
-        String[] goals = {"Сжигание жира", "Нарастить массу", "Поддержка формы", "Сжигание жира", "Нарастить массу", "Поддержка формы"};
+        String[] goals = {"Сжигание веса", "Набор массы", "Поддержка формы", "Сжигание веса", "Набор массы", "Поддержка формы"};
         int[] goalImages = {
                 R.drawable.ic_fat_burning,
                 R.drawable.ic_muscle_gain,
@@ -245,141 +245,38 @@ public class HomeActivity extends AppCompatActivity {
             TextView goalTitle = goalView.findViewById(R.id.goal_title);
             ImageView goalImage = goalView.findViewById(R.id.goal_image);
 
+            // Устанавливаем данные
             goalTitle.setText(goals[i]);
-            goalImage.setImageResource(goalImages[i]);
+            try {
+                goalImage.setImageResource(goalImages[i]);
+            } catch (Exception e) {
+                Log.e("HomeActivity", "Failed to load goal image resource: " + goalImages[i], e);
+                goalImage.setImageResource(android.R.drawable.ic_menu_gallery); // Заглушка
+            }
 
+            // Настройка GridLayout
             GridLayout.Spec rowSpec = GridLayout.spec(i / 2);
-            GridLayout.Spec colSpec = GridLayout.spec(i % 2);
+            GridLayout.Spec colSpec = GridLayout.spec(i % 2, 1f); // Вес 1f для равномерного распределения
             GridLayout.LayoutParams params = new GridLayout.LayoutParams(rowSpec, colSpec);
-            params.width = 0;
+            params.width = 0; // Ширина растягивается по весу
             params.height = GridLayout.LayoutParams.WRAP_CONTENT;
             params.setGravity(Gravity.FILL_HORIZONTAL);
+            // Добавляем горизонтальные отступы между карточками (4dp слева и справа)
+            params.setMargins(4, 0, 4, 0);
             goalView.setLayoutParams(params);
+
+            // Обработчик нажатия на карточку
+            int finalI = i;
+            goalView.setOnClickListener(v -> {
+                Intent intent = new Intent(HomeActivity.this, GoalRecommendationsActivity.class);
+                intent.putExtra("GOAL_TYPE", goals[finalI]);
+                intent.putExtra("CARD_INDEX", finalI); // Передаем индекс карточки
+                startActivity(intent);
+            });
 
             gridLayout.addView(goalView);
         }
     }
+
 }
 
-/*package com.example.smartcoach;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
-public class HomeActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        // Настройка календаря
-        setupCalendar();
-
-        // Обработка нажатия кнопки "Generate Workout"
-        findViewById(R.id.openGenerateWorkout).setOnClickListener(v -> {
-            Log.d("HomeActivity", "Generate Workout button clicked");
-            startActivity(new Intent(HomeActivity.this, GenerateWorkoutActivity.class));
-        });
-
-        // Настройка нижней навигации
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.nav_home); // Устанавливаем Home как выбранный по умолчанию
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                Log.d("HomeActivity", "Home selected");
-                return true;
-            } else if (itemId == R.id.nav_generate_workout) {
-                Log.d("HomeActivity", "Generate Workout selected");
-                startActivity(new Intent(HomeActivity.this, GenerateWorkoutActivity.class));
-                finish();
-                return true;
-            } else if (itemId == R.id.nav_settings) {
-                Log.d("HomeActivity", "Settings selected");
-                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
-                finish();
-                return true;
-            }
-            return false;
-        });
-    }
-
-    private void setupCalendar() {
-        LinearLayout calendarContainer = findViewById(R.id.calendar_container);
-        calendarContainer.removeAllViews(); // Очищаем контейнер
-
-        // Получаем текущую дату
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dayFormat = new SimpleDateFormat("d", Locale.getDefault());
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-
-        // Получаем текущий день
-        String todayDate = dateFormat.format(calendar.getTime());
-
-        // Отображаем 7 дней, начиная с текущей даты
-        for (int i = 0; i < 7; i++) {
-            // Создаем TextView для каждой даты
-            TextView dateTextView = new TextView(this);
-            dateTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
-            dateTextView.setTextSize(18);
-            dateTextView.setPadding(8, 8, 8, 8);
-            if (i > 0) {
-                dateTextView.setPadding(8, 8, 8, 8);
-            }
-
-            // Устанавливаем дату
-            String day = dayFormat.format(calendar.getTime());
-            String fullDate = dateFormat.format(calendar.getTime());
-            dateTextView.setText(day);
-
-            // Выделяем текущий день
-            if (fullDate.equals(todayDate)) {
-                dateTextView.setTextColor(getResources().getColor(R.color.dark_gray));
-                dateTextView.setBackgroundResource(android.R.drawable.btn_default);
-            } else {
-                dateTextView.setTextColor(getResources().getColor(R.color.gray));
-            }
-
-            // Добавляем TextView в контейнер
-            calendarContainer.addView(dateTextView);
-
-            // Переходим к следующему дню
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
-        }
-
-        // Прокручиваем календарь к текущему дню
-        calendarContainer.post(() -> {
-            HorizontalScrollView scrollView = findViewById(R.id.calendar_scroll);
-            scrollView.smoothScrollTo(0, 0);
-        });
-    }
-}
-*/
