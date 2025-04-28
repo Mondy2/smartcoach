@@ -21,6 +21,14 @@
         <item>Плечі</item>
         <item>Все тіло</item>
     </string-array>
+    <string-array name="popular_goals">
+        <item>Схуднення</item>
+        <item>Набір м’язової маси</item>
+        <item>Підтримка форми</item>
+        <item>Схуднення</item>
+        <item>Набір м’язової маси</item>
+        <item>Підтримка форми</item>
+    </string-array>
 </resources>
 <!--<resources>-->
 <!--    <string name="app_name">SmartCoach</string>-->

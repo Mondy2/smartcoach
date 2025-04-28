@@ -233,7 +233,8 @@ public class HomeActivity extends AppCompatActivity {
         GridLayout gridLayout = findViewById(R.id.popular_goals_grid);
         gridLayout.removeAllViews();
 
-        String[] goals = {"Сжигание веса", "Набор массы", "Поддержка формы", "Сжигание веса", "Набор массы", "Поддержка формы"};
+        // Отримуємо цілі з ресурсів
+        String[] goals = getResources().getStringArray(R.array.popular_goals);
         int[] goalImages = {
                 R.drawable.ic_fat_burning,
                 R.drawable.ic_muscle_gain,
@@ -248,7 +249,7 @@ public class HomeActivity extends AppCompatActivity {
             TextView goalTitle = goalView.findViewById(R.id.goal_title);
             ImageView goalImage = goalView.findViewById(R.id.goal_image);
 
-            // Устанавливаем данные
+            // Встановлюємо данные
             goalTitle.setText(goals[i]);
             try {
                 goalImage.setImageResource(goalImages[i]);
@@ -257,23 +258,23 @@ public class HomeActivity extends AppCompatActivity {
                 goalImage.setImageResource(android.R.drawable.ic_menu_gallery); // Заглушка
             }
 
-            // Настройка GridLayout
+            // Налаштування GridLayout
             GridLayout.Spec rowSpec = GridLayout.spec(i / 2);
-            GridLayout.Spec colSpec = GridLayout.spec(i % 2, 1f); // Вес 1f для равномерного распределения
+            GridLayout.Spec colSpec = GridLayout.spec(i % 2, 1f); // Вага 1f для рівномірного розподілу
             GridLayout.LayoutParams params = new GridLayout.LayoutParams(rowSpec, colSpec);
-            params.width = 0; // Ширина растягивается по весу
+            params.width = 0; // Ширина розтягується по вазі
             params.height = GridLayout.LayoutParams.WRAP_CONTENT;
             params.setGravity(Gravity.FILL_HORIZONTAL);
-            // Добавляем горизонтальные отступы между карточками (4dp слева и справа)
+            // Додаємо горизонтальні відступи між картками (4dp зліва і справа)
             params.setMargins(4, 0, 4, 0);
             goalView.setLayoutParams(params);
 
-            // Обработчик нажатия на карточку
+            // Обробник натискання на картку
             int finalI = i;
             goalView.setOnClickListener(v -> {
                 Intent intent = new Intent(HomeActivity.this, GoalRecommendationsActivity.class);
                 intent.putExtra("GOAL_TYPE", goals[finalI]);
-                intent.putExtra("CARD_INDEX", finalI); // Передаем индекс карточки
+                intent.putExtra("CARD_INDEX", finalI); // Передаємо індекс картки
                 startActivity(intent);
             });
 

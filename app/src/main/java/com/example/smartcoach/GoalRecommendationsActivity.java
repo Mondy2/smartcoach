@@ -23,12 +23,12 @@ public class GoalRecommendationsActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.back_button);
 
         // Встановлюємо заголовок цілі
-        goalTitle.setText(translateGoalType(goalType));
+        goalTitle.setText(goalType); // Ціль уже перекладена в HomeActivity
 
         // Встановлюємо рекомендації залежно від цілі та індексу картки
         String recommendations;
         switch (goalType) {
-            case "Сжигание веса":
+            case "Схуднення":
                 if (cardIndex == 0 || cardIndex == 3) { // Перша картка "Схуднення"
                     recommendations = "Для схуднення (варіант 1):\n\n" +
                             "1. **Кардіо тренування**: Виконуйте біг, стрибки на скакалці або їзду на велосипеді 3-4 рази на тиждень по 30-40 хвилин.\n" +
@@ -45,7 +45,7 @@ public class GoalRecommendationsActivity extends AppCompatActivity {
                             "5. **Активність**: Намагайтеся проходити 10 000 кроків на день.";
                 }
                 break;
-            case "Набор массы":
+            case "Набір м’язової маси":
                 if (cardIndex == 1 || cardIndex == 4) { // Перша картка "Набір м’язової маси"
                     recommendations = "Для набору м’язової маси (варіант 1):\n\n" +
                             "1. **Силові тренування**: Зосередьтеся на базових вправах (жим лежачи, присідання, станова тяга) 4-5 разів на тиждень.\n" +
@@ -62,7 +62,7 @@ public class GoalRecommendationsActivity extends AppCompatActivity {
                             "5. **Сон**: Спіть не менше 8 годин, оскільки ріст м’язів відбувається під час сну.";
                 }
                 break;
-            case "Поддержка формы":
+            case "Підтримка форми":
                 if (cardIndex == 2 || cardIndex == 5) { // Перша картка "Підтримка форми"
                     recommendations = "Для підтримки форми (варіант 1):\n\n" +
                             "1. **Регулярні тренування**: Виконуйте 3-4 тренування на тиждень, включаючи кардіо та силові вправи.\n" +
@@ -87,21 +87,7 @@ public class GoalRecommendationsActivity extends AppCompatActivity {
         // Обробник натискання на кнопку "Назад"
         backButton.setOnClickListener(v -> finish());
     }
-
-    private String translateGoalType(String goalType) {
-        switch (goalType) {
-            case "Сжигание веса":
-                return "Схуднення";
-            case "Набор массы":
-                return "Набір м’язової маси";
-            case "Поддержка формы":
-                return "Підтримка форми";
-            default:
-                return goalType;
-        }
-    }
 }
-
 //package com.example.smartcoach;
 //
 //import android.os.Bundle;
