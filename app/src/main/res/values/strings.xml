@@ -1,21 +1,45 @@
 <resources>
     <string name="app_name">SmartCoach</string>
     <string-array name="fitness_goals">
-        <item>Weight Loss</item>
-        <item>Muscle Gain</item>
-        <item>Maintenance</item>
+        <item>Схуднення</item>
+        <item>Набір м’язової маси</item>
+        <item>Підтримка форми</item>
     </string-array>
+
     <string-array name="training_modes">
-        <item>Beginner</item>
-        <item>Intermediate</item>
-        <item>Advanced</item>
+        <item>Початківець</item>
+        <item>Середній</item>
+        <item>Просунутий</item>
     </string-array>
+
     <string-array name="muscle_groups">
-        <item>Chest</item>
-        <item>Back</item>
-        <item>Arms</item>
-        <item>Legs</item>
-        <item>Abs</item>
-        <item>Shoulders</item>
+        <item>Груди</item>
+        <item>Спина</item>
+        <item>Руки</item>
+        <item>Ноги</item>
+        <item>Прес</item>
+        <item>Плечі</item>
+        <item>Все тіло</item>
     </string-array>
 </resources>
+<!--<resources>-->
+<!--    <string name="app_name">SmartCoach</string>-->
+<!--    <string-array name="fitness_goals">-->
+<!--        <item>Weight Loss</item>-->
+<!--        <item>Muscle Gain</item>-->
+<!--        <item>Maintenance</item>-->
+<!--    </string-array>-->
+<!--    <string-array name="training_modes">-->
+<!--        <item>Beginner</item>-->
+<!--        <item>Intermediate</item>-->
+<!--        <item>Advanced</item>-->
+<!--    </string-array>-->
+<!--    <string-array name="muscle_groups">-->
+<!--        <item>Chest</item>-->
+<!--        <item>Back</item>-->
+<!--        <item>Arms</item>-->
+<!--        <item>Legs</item>-->
+<!--        <item>Abs</item>-->
+<!--        <item>Shoulders</item>-->
+<!--    </string-array>-->
+<!--</resources>-->

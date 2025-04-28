@@ -102,60 +102,8 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         });
     }
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_home);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
-//
-//        // Настройка календаря
-//        setupCalendar();
-//
-//        // Настройка RecyclerView для тренировок
-//        workoutsRecyclerView = findViewById(R.id.workouts_recycler_view);
-//        workoutsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-//        workoutAdapter = new WorkoutAdapter(workouts, workout -> {
-//            // Переход на WorkoutDetailActivity при нажатии на карточку
-//            Intent intent = new Intent(HomeActivity.this, WorkoutDetailActivity.class);
-//            intent.putExtra("WORKOUT_ID", workout.getAutoWorkoutID());
-//            intent.putExtra("USER_ID", workout.getUserID());
-//            startActivity(intent);
-//        });
-//        workoutsRecyclerView.setAdapter(workoutAdapter);
-//
-//        // Загрузка тренировок из Firebase
-//        loadUserWorkouts();
-//
-//        // Настройка популярных целей
-//        setupPopularGoals();
-//
-//        // Настройка нижней навигации
-//        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setSelectedItemId(R.id.nav_home);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//            int itemId = item.getItemId();
-//            if (itemId == R.id.nav_home) {
-//                Log.d("HomeActivity", "Home selected");
-//                return true;
-//            } else if (itemId == R.id.nav_generate_workout) {
-//                Log.d("HomeActivity", "Generate Workout selected");
-//                startActivity(new Intent(HomeActivity.this, GenerateWorkoutActivity.class));
-//                finish();
-//                return true;
-//            } else if (itemId == R.id.nav_settings) {
-//                Log.d("HomeActivity", "Settings selected");
-//                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
-//                finish();
-//                return true;
-//            }
-//            return false;
-//        });
-//    }
+
+
 
     private void setupCalendar() {
         LinearLayout calendarContainer = findViewById(R.id.calendar_container);

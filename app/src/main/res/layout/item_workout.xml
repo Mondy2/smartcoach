@@ -8,22 +8,22 @@
     android:background="@drawable/rounded_container_blue"
     android:padding="16dp">
 
-    <!-- Изображение группы мышц -->
+    <!-- Зображення групи м’язів -->
     <ImageView
         android:id="@+id/muscleImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:scaleType="centerCrop"
-        android:contentDescription="Muscle group image"
+        android:contentDescription="Зображення групи м’язів"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Название группы мышц -->
+    <!-- Назва групи м’язів -->
     <TextView
         android:id="@+id/muscleGroupText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Chest"
+        android:text="Груди"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toEndOf="@id/muscleImage"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Дата тренировки -->
+    <!-- Дата тренування -->
     <TextView
         android:id="@+id/dateText"
         android:layout_width="0dp"
@@ -46,12 +46,12 @@
         app:layout_constraintStart_toEndOf="@id/muscleImage"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Цель тренировки -->
+    <!-- Ціль тренування -->
     <TextView
         android:id="@+id/goalText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Goal: Muscle Gain"
+        android:text="Ціль: Схуднення"
         android:textSize="14sp"
         android:textColor="@android:color/white"
         android:layout_marginStart="16dp"

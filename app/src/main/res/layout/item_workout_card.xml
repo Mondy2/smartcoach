@@ -21,14 +21,14 @@
             android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_default_workout"
-            android:contentDescription="Muscle group image" />
+            android:contentDescription="Зображення групи м’язів" />
 
         <!-- Program Title -->
         <TextView
             android:id="@+id/workout_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ВСЁ ТЕЛО ПРОГРАММА 7X4"
+            android:text="ПРОГРАМА ВСЬОГО ТІЛА 7X4"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/light_blue"
@@ -39,7 +39,7 @@
             android:id="@+id/workout_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Научите своё тело к идеальной фигуре, трениру всё группы мышцы и создавай своё тело мечты за 4 недели!"
+            android:text="Навчіть своє тіло ідеальної форми, тренуйте всі групи м’язів і створюйте тіло своєї мрії за 4 тижні!"
             android:textSize="14sp"
             android:textColor="@color/light_blue"
             android:layout_marginTop="8dp" />
@@ -49,7 +49,7 @@
             android:id="@+id/start_workout_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="НАЧАЛО"
+            android:text="ПОЧАТИ"
             android:textColor="@color/dark_gray"
             android:background="@drawable/rounded_button_blue"
             android:paddingHorizontal="24dp"
