@@ -12,7 +12,7 @@
         android:id="@+id/header_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My Workouts"
+        android:text="Мої тренування"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/dark_gray"
@@ -21,9 +21,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- RecyclerView для списка тренировок -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/workoutRecyclerView"
+    <!-- GridLayout для списку тренувань -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -31,7 +30,16 @@
         app:layout_constraintTop_toBottomOf="@id/header_title"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <GridLayout
+            android:id="@+id/workouts_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="80dp" />
+    </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
