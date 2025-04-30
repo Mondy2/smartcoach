@@ -115,11 +115,29 @@ public class WorkoutListActivity extends AppCompatActivity {
             TextView goalText = workoutView.findViewById(R.id.goalText);
             ImageView muscleImage = workoutView.findViewById(R.id.muscleImage);
 
-            String muscleGroup = WorkoutUtils.determineMuscleGroup(workout.getSuggestedWorkout());
+            String rawGroup = workout.getMuscleGroup();
+            String muscleGroup = (rawGroup == null || rawGroup.isEmpty())
+                    ? WorkoutUtils.determineMuscleGroup(workout.getSuggestedWorkout())
+                    : rawGroup;
+
+            muscleGroup = muscleGroup.trim().toLowerCase(Locale.ROOT);
+
+            String uiGroup = workout.getMuscleGroup();
+            if (uiGroup == null || uiGroup.isEmpty()) {
+                uiGroup = WorkoutUtils.translateMuscleGroup(
+                        WorkoutUtils.determineMuscleGroup(workout.getSuggestedWorkout()));
+            }
+
+            String keyGroup = WorkoutUtils.uiToKeyMuscleGroup(uiGroup);
+
+            WorkoutUtils.setMuscleImage(muscleImage, keyGroup);
+
+            muscleGroupText.setText(uiGroup);
             muscleGroupText.setText(WorkoutUtils.translateMuscleGroup(muscleGroup));
+
             dateText.setText(workout.getDate());
             goalText.setText("Ціль: " + WorkoutUtils.translateWorkoutGoal(workout.getWorkoutGoal()));
-            WorkoutUtils.setMuscleImage(muscleImage, muscleGroup);
+
 
             GridLayout.Spec rowSpec = GridLayout.spec(i / 2);
             GridLayout.Spec colSpec = GridLayout.spec(i % 2, 1f);

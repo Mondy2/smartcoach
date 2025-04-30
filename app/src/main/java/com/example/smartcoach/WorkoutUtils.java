@@ -1,6 +1,9 @@
 package com.example.smartcoach;
 
+import android.util.Log;
 import android.widget.ImageView;
+
+import java.util.Locale;
 
 public class WorkoutUtils {
 
@@ -80,10 +83,10 @@ public class WorkoutUtils {
         StringBuilder translatedWorkout = new StringBuilder();
         String[] exercises = suggestedWorkout.split("\n");
         for (String exercise : exercises) {
-            if (exercise.contains("Push-ups")) {
-                translatedWorkout.append(exercise.replace("Push-ups", "Віджимання")).append("\n");
-            } else if (exercise.contains("Bench Press")) {
-                translatedWorkout.append(exercise.replace("Bench Press", "Жим лежачи")).append("\n");
+            if (exercise.contains("Віджиманняs")) {
+                translatedWorkout.append(exercise.replace("Віджимання", "Віджимання")).append("\n");
+            } else if (exercise.contains("Жим лежачи")) {
+                translatedWorkout.append(exercise.replace("Жим лежачи", "Жим лежачи")).append("\n");
             } else if (exercise.contains("Dumbbell Flyes")) {
                 translatedWorkout.append(exercise.replace("Dumbbell Flyes", "Розведення гантелей")).append("\n");
             } else if (exercise.contains("Pull-ups")) {
@@ -130,31 +133,57 @@ public class WorkoutUtils {
         }
         return translatedWorkout.toString().trim();
     }
+    public static String uiToKeyMuscleGroup(String uiName) {
+        if (uiName == null) return "";
+        switch (uiName.toLowerCase(Locale.ROOT)) {
+            case "груди":    return "chest";
+            case "спина":    return "back";
+            case "руки":     return "arms";
+            case "ноги":     return "legs";
+            case "прес":     return "abs";
+            case "плечі":    return "shoulders";
+            case "все тіло": return "full body";
+            default:         return "";
+        }
+    }
 
     public static void setMuscleImage(ImageView muscleImage, String muscleGroup) {
-        if (muscleImage == null || muscleGroup == null) return;
-        switch (muscleGroup.toLowerCase()) {
+        String raw = muscleGroup;
+        String mg = (raw == null ? "" : raw.trim().toLowerCase(Locale.ROOT));
+
+        Log.d("WorkoutUtils", "setMuscleImage(): raw='" + raw + "', normalized='" + mg + "'");
+
+        switch (mg) {
             case "chest":
+                Log.d("WorkoutUtils", "→ ic_chest");
                 muscleImage.setImageResource(R.drawable.ic_chest);
                 break;
             case "back":
+                Log.d("WorkoutUtils", "→ ic_back");
                 muscleImage.setImageResource(R.drawable.ic_back);
                 break;
             case "arms":
+                Log.d("WorkoutUtils", "→ ic_arms");
                 muscleImage.setImageResource(R.drawable.ic_arms);
                 break;
             case "legs":
+                Log.d("WorkoutUtils", "→ ic_legs");
                 muscleImage.setImageResource(R.drawable.ic_legs);
                 break;
             case "abs":
+                Log.d("WorkoutUtils", "→ ic_abs");
                 muscleImage.setImageResource(R.drawable.ic_abs);
                 break;
             case "shoulders":
+                Log.d("WorkoutUtils", "→ ic_shoulders");
                 muscleImage.setImageResource(R.drawable.ic_shoulders);
                 break;
             default:
+                Log.w("WorkoutUtils", "Unknown group, using default. raw='" + raw + "'");
                 muscleImage.setImageResource(R.drawable.ic_default_workout);
                 break;
         }
     }
+
+
 }

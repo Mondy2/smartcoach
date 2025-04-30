@@ -42,6 +42,7 @@
                 android:id="@+id/muscle_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_default_workout"
                 android:contentDescription="Muscle group image" />
@@ -65,7 +66,17 @@
                 android:textSize="16sp"
                 android:layout_marginTop="8dp" />
 
-            <!-- Suggested Workout -->
+            <!-- Muscle Group -->
+            <TextView
+                android:id="@+id/tvDetailMuscle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
+
+            <!-- Suggested Workout Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,7 +94,7 @@
                 android:textSize="14sp"
                 android:layout_marginTop="4dp" />
 
-            <!-- Intensity -->
+            <!-- Intensity Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +112,7 @@
                 android:textSize="14sp"
                 android:layout_marginTop="4dp" />
 
-            <!-- Sets -->
+            <!-- Sets Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,7 +130,7 @@
                 android:textSize="14sp"
                 android:layout_marginTop="4dp" />
 
-            <!-- Duration -->
+            <!-- Duration Label -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
