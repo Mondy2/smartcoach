@@ -15,5 +15,8 @@
     <color name="purple_start">#AB47BC</color>
     <color name="purple_end">#7E57C2</color>
     <color name="purple_transparent">#80AB47BC</color> <!-- Полупрозрачный фиолетовый -->
-    <color name="purple_solid">#AB47BC</color> <!-- Яркий фиолетовый -->
+    <color name="purple_solid">#AB47BC</color><!-- Яркий фиолетовый -->
+    <color name="gray_500">#FF9E9E9E</color>
+    <color name="light_red">#D52424</color><!-- Яркий красний -->
+
 </resources>
