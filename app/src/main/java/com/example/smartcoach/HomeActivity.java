@@ -231,7 +231,7 @@ public class HomeActivity extends AppCompatActivity {
                             "Maintenance",
                             getResources().getStringArray(R.array.muscle_groups)[6] // "Все тіло"
                     );
-                    workouts.add(defaultWorkout);
+                    // workouts.add(defaultWorkout);
                 }
 
                 // Ограничение на максимальное количество тренировок (например, 3)
